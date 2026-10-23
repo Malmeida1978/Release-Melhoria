@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Release Outubro 2026 · Sprint Melhoria 88</title>
+<style>
+:root{--font-anthropic-sans:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--font-anthropic-serif:Georgia,"Times New Roman",serif;
+--color-bg:#ffffff;--color-fg:#1d2430;--color-fg-muted:#5f6878;--color-panel:#f6f7f9;--color-border-line:#dde1e7;--color-ok:#1f7a4a;--color-warn:#a15c00;--color-bad:#c0392b;
+--cds-surface-popover:#ffffff;--cds-border:#d3d8df;--cds-shadow-popover:0 6px 18px rgba(20,30,45,.14);--cds-text-secondary:#5f6878;
+--cds-radius:10px;--cds-pad-xs:4px;--cds-pad-sm:8px;--cds-pad-md:12px;--cds-pad-lg:18px;--cds-gap-sm:8px;--cds-gap-md:14px;--cds-gap-lg:22px;
+--cds-font-size-caption:12.5px;--cds-font-size-body:14px;--cds-font-size-heading:16px;--cds-font-size-title:28px;--cds-font-weight-medium:600;--cds-dur-slow:.3s;
+--c0:#2e7d5b;--c1:#3a6fd8;--c2:#8a5cc7;--c3:#d08a1e;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--color-bg:#14181f;--color-fg:#e6e9ee;--color-fg-muted:#9aa3b2;--color-panel:#1b2029;--color-border-line:#2d3440;--color-ok:#5cc58f;--color-warn:#e0a24a;--color-bad:#ef6b5e;
+--cds-surface-popover:#222833;--cds-border:#3a4250;--cds-shadow-popover:0 6px 18px rgba(0,0,0,.45);--cds-text-secondary:#9aa3b2;
+--c0:#3fa77a;--c1:#5b8cf0;--c2:#a780e0;--c3:#e2a23f;color-scheme:dark}}
+html,body{margin:0;background:var(--color-bg);color:var(--color-fg)}
+body{font-family:var(--font-anthropic-sans);font-size:14px;padding:24px max(16px,4vw)}
+#dash-root{max-width:1400px;margin:0 auto}
+.gv .stamp{font-size:12.5px;color:var(--color-fg-muted);margin-top:6px}
+.gv .pill{white-space:nowrap;align-self:flex-start}
+.gv .pipe div{min-width:52px}
+</style>
+<script>
+window.d3={format:()=>v=>Math.round(v*100)+'%',max:(a,fn)=>a.length?Math.max(...a.map(fn)):undefined,
+rollups:(a,red,key)=>{const m=new Map();a.forEach(x=>{const k=key(x);if(!m.has(k))m.set(k,[]);m.get(k).push(x)});return [...m].map(([k,v])=>[k,red(v)]);}};
+</script>
+<script>
+(function(){
+const DATA=[{"id": 50024, "titulo": "Nova tela de Consulta - Encaminhamento INSS", "cliente": "Não Informado", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Bruno Tukaze Vagen", "dev": "Andre Afonso de Lima", "tester": "Joana Darc Mateus", "data_devs": "", "criado": "2026-04-27", "alterado": "2026-10-20", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/50024"}, {"id": 52566, "titulo": "Ambulatório - CRUD de Agendas pra Ambulatórios", "cliente": "FSFX", "etapa": "Em teste", "ordem_etapa": 3, "estado": "Test", "responsavel": "Yuri Almeida", "dev": "Luciano Andrade Filho", "tester": "Karina Pereira da Cruz", "data_devs": "2026-10-14", "criado": "2026-07-10", "alterado": "2026-10-21", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/52566"}, {"id": 52657, "titulo": "Consultar NRs (IA Chat) - FAP Online", "cliente": "Não Informado", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Vinicius Gimenes de Oliveira", "dev": "João Victor Gomes Carvalho", "tester": "Eduardo Castro", "data_devs": "2026-09-24", "criado": "2026-07-15", "alterado": "2026-10-15", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/52657"}, {"id": 52722, "titulo": "Implementar campo \"Observação\" na tela de detalhamento do agendamento da clínica", "cliente": "Não Informado", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Guilherme Dias", "dev": "Nicolas Svaiger Santos", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-07-16", "alterado": "2026-10-16", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/52722"}, {"id": 54366, "titulo": "Gerar laudo PCD via requisição do tipo assistencial", "cliente": "Não Informado", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Guilherme Dias", "dev": "Luciano Andrade Filho", "tester": "Pedro Henrique Santos Mendonça", "data_devs": "", "criado": "2026-09-04", "alterado": "2026-10-19", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/54366"}, {"id": 54418, "titulo": "Integração REST — Envio de Documentos para Jurídico IA", "cliente": "Não Informado", "etapa": "Pronto para teste", "ordem_etapa": 2, "estado": "To Do Test", "responsavel": "Antonio França", "dev": "Julius Caesar Santos Silva", "tester": "Pedro Henrique Santos Mendonça", "data_devs": "2026-09-23", "criado": "2026-09-08", "alterado": "2026-10-20", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/54418"}, {"id": 54627, "titulo": "[INTEGRAÇÃO FAP X LMS]", "cliente": "Bracell", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Vinicius Gimenes de Oliveira", "dev": "Nicolas Svaiger Santos", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-09-14", "alterado": "2026-10-20", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/54627"}, {"id": 54628, "titulo": "[CIPA] Implementar relatório de Membros Indicados e Eleitos da CIPA", "cliente": "Claro", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Vinicius Gimenes de Oliveira", "dev": "João Victor Gomes Carvalho", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-09-14", "alterado": "2026-10-13", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/54628"}, {"id": 54633, "titulo": "[ESOCIAL] - Parametrizar envio de EPIs por risco ao eSocial", "cliente": "Vicunha", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Vinicius Gimenes de Oliveira", "dev": "João Victor Gomes Carvalho", "tester": "Eduardo Castro", "data_devs": "2026-09-18", "criado": "2026-09-14", "alterado": "2026-10-19", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/54633"}, {"id": 54706, "titulo": "[ORDEM DE SERVIÇO] Parametrizar padrão da Ordem de Serviço por Cargo, UT ou Work Area", "cliente": "Bracell", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Vinicius Gimenes de Oliveira", "dev": "Luciano Andrade Filho", "tester": "Eduardo Castro", "data_devs": "2026-09-24", "criado": "2026-09-16", "alterado": "2026-10-19", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/54706"}, {"id": 54901, "titulo": "Padronizar POP UP de alerta ao finalizar a emissão de requisição", "cliente": "FEMSA", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Guilherme Dias", "dev": "João Victor Gomes Carvalho", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-09-21", "alterado": "2026-10-15", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/54901"}, {"id": 54935, "titulo": "[EPI] - Encerrar gestão do EPI", "cliente": "Claro", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Vinicius Gimenes de Oliveira", "dev": "Nicolas Svaiger Santos", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-09-21", "alterado": "2026-10-20", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/54935"}, {"id": 54974, "titulo": "SSO - Plano de ação não esta permitindo selecionar um responsavel de outro CNPJ", "cliente": "Binatural", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Vinicius Gimenes de Oliveira", "dev": "Rafael Wandenkolk", "tester": "Karina Pereira da Cruz", "data_devs": "", "criado": "2026-09-22", "alterado": "2026-10-20", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/54974"}, {"id": 55023, "titulo": "[PPP] - Atualizar opções do campo 15.2 – Tipo de risco", "cliente": "Claro", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Vinicius Gimenes de Oliveira", "dev": "João Victor Gomes Carvalho", "tester": "Eduardo Castro", "data_devs": "2026-10-06", "criado": "2026-09-23", "alterado": "2026-10-20", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55023"}, {"id": 55080, "titulo": "[PCMSO] - Formatação visual PCMSO", "cliente": "Passarelli", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Vinicius Gimenes de Oliveira", "dev": "Leonardo Santos", "tester": "Eduardo Castro", "data_devs": "2026-10-14", "criado": "2026-09-24", "alterado": "2026-10-21", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55080"}, {"id": 55097, "titulo": "Implementar regra de alerta por faixa etária para exposição a agrotóxicos na tela de Exames Solicitar", "cliente": "Bioaroeira", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Guilherme Dias", "dev": "Nicolas Svaiger Santos", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-09-24", "alterado": "2026-10-16", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55097"}, {"id": 55189, "titulo": "Implementar regra para exibir exame adicionado manualmente na requisição", "cliente": "Não Informado", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Guilherme Dias", "dev": "Nicolas Svaiger Santos", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-09-28", "alterado": "2026-10-16", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55189"}, {"id": 55206, "titulo": "Atendimento ACL — Fluxo Automatizado de Telemedicina para Atestados Aprovados", "cliente": "Pague Menos", "etapa": "Pronto para teste", "ordem_etapa": 2, "estado": "To Do Test", "responsavel": "Aline Rezende", "dev": "Leonardo Santos", "tester": "", "data_devs": "2026-10-15", "criado": "2026-09-28", "alterado": "2026-10-20", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55206"}, {"id": 55227, "titulo": "Log Interface - Inclusão de APIs no Log de Interface", "cliente": "Não Informado", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Yuri Almeida", "dev": "João Victor Gomes Carvalho", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-09-29", "alterado": "2026-10-20", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55227"}, {"id": 55242, "titulo": "API — Consulta de Vencimento do ASO do Colaborador", "cliente": "Bioaroeira", "etapa": "Pronto para teste", "ordem_etapa": 2, "estado": "To Do Test", "responsavel": "Yuri Almeida", "dev": "João Victor Gomes Carvalho", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-09-29", "alterado": "2026-10-21", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55242"}, {"id": 55251, "titulo": "Log Interface - Tela de Logs de APIs REST", "cliente": "Não Informado", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Yuri Almeida", "dev": "Nicolas Svaiger Santos", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-09-29", "alterado": "2026-10-20", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55251"}, {"id": 55261, "titulo": "[OCORRÊNCIA] - Criar parâmetro para limitar os valores exibidos no campo \"Tipo de Ocorrência\"", "cliente": "RD - RaiaDrogasil", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Vinicius Gimenes de Oliveira", "dev": "João Victor Gomes Carvalho", "tester": "Eduardo Castro", "data_devs": "2026-10-02", "criado": "2026-09-29", "alterado": "2026-10-20", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55261"}, {"id": 55291, "titulo": "Considerar apenas as atividades especiais habilitadas na Configuração do ASO ao gerar o ASO em branco", "cliente": "CSN", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Guilherme Dias", "dev": "João Victor Gomes Carvalho", "tester": "Eduardo Castro", "data_devs": "2026-10-08", "criado": "2026-09-30", "alterado": "2026-10-20", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55291"}, {"id": 55457, "titulo": "Exibir o campo \"Novo Cargo\" diretamente na etapa de Dados do Funcionário (Mudança de Risco Ocupacional)", "cliente": "FEMSA", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Guilherme Dias", "dev": "Nicolas Svaiger Santos", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-10-05", "alterado": "2026-10-16", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55457"}, {"id": 55459, "titulo": "[POSIÇÃO] Exibição de Posição e Melhoria das Mensagens de Alocação por Work Area", "cliente": "Bracell", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Vinicius Gimenes de Oliveira", "dev": "Nicolas Svaiger Santos", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-10-05", "alterado": "2026-10-16", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55459"}, {"id": 55566, "titulo": "[POSIÇÃO] Controle de Permissão para Exclusão de Posições", "cliente": "Bracell", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Vinicius Gimenes de Oliveira", "dev": "Nicolas Svaiger Santos", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-10-07", "alterado": "2026-10-19", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55566"}, {"id": 55586, "titulo": "Gestão de Afastado - Inclusão Manual de Benefício", "cliente": "LG", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Yuri Almeida", "dev": "João Victor Gomes Carvalho", "tester": "Pedro Henrique Santos Mendonça", "data_devs": "", "criado": "2026-10-07", "alterado": "2026-10-21", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55586"}, {"id": 55627, "titulo": "[POSIÇÃO] Flexibilizar importação de funcionários demitidos", "cliente": "Bracell", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Vinicius Gimenes de Oliveira", "dev": "Nicolas Svaiger Santos", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-10-08", "alterado": "2026-10-16", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55627"}, {"id": 55724, "titulo": "[CIPA] Bloquear criação do calendário da CIPA quando não houver indicação dos representantes do empregador", "cliente": "Claro", "etapa": "Em teste", "ordem_etapa": 3, "estado": "Test", "responsavel": "Vinicius Gimenes de Oliveira", "dev": "João Victor Gomes Carvalho", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-10-09", "alterado": "2026-10-21", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55724"}, {"id": 55759, "titulo": "[PLANO DE AÇÃO] Inclusão da Data prevista de conclusão na ação", "cliente": "Binatural", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Vinicius Gimenes de Oliveira", "dev": "Nicolas Svaiger Santos", "tester": "Karina Pereira da Cruz", "data_devs": "", "criado": "2026-10-13", "alterado": "2026-10-20", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55759"}, {"id": 55773, "titulo": "Desassociar o campo \"Nível de Queixas\" das perguntas (ex.: \"Membros Inferiores\", \"Membros Superiores\", \"Ausculta\")", "cliente": "FEMSA", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Antonio França", "dev": "Wesley de Senna Soares", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-10-13", "alterado": "2026-10-20", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55773"}, {"id": 55776, "titulo": "Descrição do tipo de documento na tela de Gestão de exames ao ser inserido com a definição de \"OUTROS\"", "cliente": "FEMSA", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Antonio França", "dev": "Wesley de Senna Soares", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-10-13", "alterado": "2026-10-20", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55776"}, {"id": 55779, "titulo": "[EPI/PLANO DE AÇÃO] Redirecionamento de página", "cliente": "Binatural", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Vinicius Gimenes de Oliveira", "dev": "João Victor Gomes Carvalho", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-10-13", "alterado": "2026-10-20", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55779"}, {"id": 55806, "titulo": "Apartar relatório gestão de entrega/epi", "cliente": "Claro", "etapa": "Em teste", "ordem_etapa": 3, "estado": "Test", "responsavel": "Vinicius Gimenes de Oliveira", "dev": "Luciano Andrade Filho", "tester": "Guilherme Barbosa Dos Santos", "data_devs": "2026-10-19", "criado": "2026-10-14", "alterado": "2026-10-21", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55806"}, {"id": 55808, "titulo": "[OCORRÊNCIA] Implementar SELECT 2 no campo Empresa", "cliente": "Claro", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Vinicius Gimenes de Oliveira", "dev": "Nicolas Svaiger Santos", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-10-14", "alterado": "2026-10-20", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55808"}, {"id": 55809, "titulo": "Nova tela de gerenciamento de perfis e permissões (ADM Milaneli) substituindo a Atribuição de Perfil de Usuário", "cliente": "Não Informado", "etapa": "Em teste", "ordem_etapa": 3, "estado": "Test", "responsavel": "Julius Caesar Santos Silva", "dev": "Julius Caesar Santos Silva", "tester": "Pedro Henrique Santos Mendonça", "data_devs": "", "criado": "2026-10-14", "alterado": "2026-10-21", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55809"}, {"id": 55812, "titulo": "Visualização do campo de observação da agenda, para o médico durante a consulta", "cliente": "FEMSA", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Antonio França", "dev": "Wesley de Senna Soares", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-10-14", "alterado": "2026-10-20", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55812"}, {"id": 55828, "titulo": "Envio de notificação via WhatsApp no agendamento de consulta periódica por Telemedicina (Pague Menos)", "cliente": "Pague Menos", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Antonio França", "dev": "Nicolas Svaiger Santos", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-10-14", "alterado": "2026-10-20", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55828"}, {"id": 55844, "titulo": "Alerta de CAT com Data do Acidente inferior a 30 dias", "cliente": "Claro", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Antonio França", "dev": "Gustavo Albuquerque", "tester": "Eduardo Castro", "data_devs": "", "criado": "2026-10-14", "alterado": "2026-10-21", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55844"}, {"id": 55971, "titulo": "[CIPA] Relatório de participantes da CIPA", "cliente": "Claro", "etapa": "Pronto para publicação", "ordem_etapa": 4, "estado": "Resolved", "responsavel": "Vinicius Gimenes de Oliveira", "dev": "Nicolas Svaiger Santos", "tester": "Guilherme Barbosa Dos Santos", "data_devs": "", "criado": "2026-10-16", "alterado": "2026-10-21", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55971"}, {"id": 55981, "titulo": "Obrigatoriedade no preenchimento do \"tipo de solicitação\" na nova tela de Rede Credenciada", "cliente": "FEMSA", "etapa": "Pronto para teste", "ordem_etapa": 2, "estado": "To Do Test", "responsavel": "Guilherme Dias", "dev": "João Victor Gomes Carvalho", "tester": "", "data_devs": "", "criado": "2026-10-16", "alterado": "2026-10-21", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/55981"}, {"id": 56106, "titulo": "Melhoria no Documento de Declaração de Último Dia Trabalhado (DUT) – Inclusão da Natureza do Afastamento", "cliente": "Pague Menos", "etapa": "Em desenvolvimento", "ordem_etapa": 1, "estado": "Active", "responsavel": "Antonio França", "dev": "Luciano Andrade Filho", "tester": "", "data_devs": "", "criado": "2026-10-19", "alterado": "2026-10-21", "link": "https://dev.azure.com/MilaneliSistemas/FAPonline/_workitems/edit/56106"}];
+const cs=getComputedStyle(document.documentElement);
+const colors=['--c0','--c1','--c2','--c3'].map(v=>'var('+v+')');
+const calcs={};
+window.dash={colors,
+ calc(id,o){calcs[id]=o.fn(...o.inputs.map(()=>DATA));},
+ data(id){return {status:'ok',data:id==='itens'?DATA:(calcs[id]||[])};},
+ onData(fn){const run=()=>fn();if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();let t;addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(run,150);});}};
+})();
+</script>
+</head><body><div id="dash-root">
+<style>
+#dash-root .gv{font-family:var(--font-anthropic-sans);display:flex;flex-direction:column;gap:var(--cds-gap-lg);font-variant-numeric:tabular-nums}
+.gv h1{font-family:var(--font-anthropic-serif);font-weight:400;font-size:var(--cds-font-size-title);margin:0;text-wrap:balance}
+.gv h2{font-size:var(--cds-font-size-heading);font-weight:var(--cds-font-weight-medium);margin:0}
+.gv .sub{color:var(--color-fg-muted);margin:4px 0 0}
+.gv .note{color:var(--color-fg-muted);font-size:var(--cds-font-size-caption);margin:2px 0 var(--cds-gap-md)}
+.gv .card{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-lg);min-width:0}
+.gv .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:var(--cds-gap-md)}
+.gv .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,9.5rem),1fr));gap:var(--cds-gap-md)}
+.gv .kpi{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-md) var(--cds-pad-lg);display:flex;flex-direction:column;gap:4px;border-top:4px solid var(--k,var(--color-border-line))}
+.gv .kpi .lab{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.gv .kpi .val{font-family:var(--font-anthropic-serif);font-size:2.4rem;line-height:1.1}
+.gv .pipe{display:flex;height:40px;border-radius:var(--cds-radius);overflow:hidden;gap:2px}
+.gv .pipe div{display:flex;align-items:center;justify-content:center;color:#fff;font-size:var(--cds-font-size-caption);font-weight:600;min-width:28px;white-space:nowrap;overflow:hidden}
+.gv .legend{display:flex;flex-wrap:wrap;gap:var(--cds-gap-md);margin-top:var(--cds-gap-sm);font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.gv .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.gv .board{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:var(--cds-gap-md)}
+.gv .col{display:flex;flex-direction:column;gap:var(--cds-gap-sm);min-width:0}
+.gv .colh{display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:var(--cds-font-size-body);padding-bottom:6px;border-bottom:3px solid var(--c)}
+.gv .tk{border:1px solid var(--color-border-line);border-left:4px solid var(--c);border-radius:var(--cds-radius);padding:var(--cds-pad-sm) var(--cds-pad-md);background:var(--color-bg);display:flex;flex-direction:column;gap:4px}
+.gv .tk a{font-weight:600;color:inherit}
+.gv .tk .t{font-size:var(--cds-font-size-body);line-height:1.35}
+.gv .tk .m{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.gv .tk .at{color:var(--color-fg)}
+.gv .tk .at .atl{color:var(--color-fg-muted)}
+.gv .tk .at strong{font-weight:600}
+.gv .pill{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;border:1px solid var(--color-border-line);color:var(--color-fg-muted)}
+.gv .pill.warn{color:var(--color-warn);border-color:currentColor}
+.gv .bars{position:relative;display:flex;flex-direction:column;gap:6px;min-height:60px}
+.gv .br{display:grid;grid-template-columns:minmax(7rem,11rem) 1fr 2.2rem;gap:var(--cds-gap-sm);align-items:center;font-size:var(--cds-font-size-caption)}
+.gv .br .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gv .br .tr{display:flex;height:18px;gap:1px}
+.gv .br .tr span{display:block;height:100%}
+.gv .br .tr span:first-child{border-radius:4px 0 0 4px}.gv .br .tr span:last-child{border-radius:0 4px 4px 0}
+.gv .br .tr span:only-child{border-radius:4px}
+.gv .br .n{text-align:right;font-weight:600}
+.gv .tip{position:absolute;pointer-events:none;background:var(--cds-surface-popover);border:1px solid var(--cds-border);border-radius:var(--cds-radius);box-shadow:var(--cds-shadow-popover);padding:var(--cds-pad-xs) var(--cds-pad-sm);font-size:var(--cds-font-size-caption);z-index:5;white-space:nowrap}
+.gv .tip .h{color:var(--cds-text-secondary);margin-bottom:2px}
+.gv .tools{display:flex;gap:var(--cds-gap-sm);flex-wrap:wrap;margin-bottom:var(--cds-gap-sm)}
+.gv .tools input,.gv .tools select{font:inherit;padding:6px 10px;border:1px solid var(--color-border-line);border-radius:var(--cds-radius);background:var(--color-bg);color:var(--color-fg);min-width:0}
+.gv .tools input{flex:1 1 14rem}
+.gv .tbl{max-height:34rem;overflow:auto}
+.gv table{border-collapse:collapse;width:100%;font-size:var(--cds-font-size-caption)}
+.gv th{position:sticky;top:0;background:var(--color-panel);text-align:left;border-bottom:1px solid var(--color-border-line);padding:0}
+.gv th button{all:unset;cursor:pointer;display:block;padding:8px;font-weight:600}
+.gv th button:focus-visible{outline:2px solid var(--color-fg)}
+.gv td{padding:7px 8px;border-bottom:1px solid var(--color-border-line);vertical-align:top}
+.gv td a{color:inherit;font-weight:600}
+.gv .alert li{margin-bottom:4px}
+.gv .alert ul{margin:0;padding-left:1.1rem;font-size:var(--cds-font-size-body)}
+@media (max-width:640px){.gv .hide-sm{display:none}}
+[data-dash-source-state=empty]{color:transparent}
+[data-dash-source-state=refreshing]{opacity:.5;transition:opacity var(--cds-dur-slow)}
+.gv .fail{display:flex;align-items:center;justify-content:center;gap:6px;color:var(--color-fg-muted);font-size:var(--cds-font-size-caption);min-height:60px}
+.gv .fail::before{content:"";width:.375rem;height:.375rem;border-radius:50%;background:var(--color-bad)}
+</style>
+
+<div class="gv">
+  <header>
+    <h1 id="titulo">Release Outubro 2026 · Sprint Melhoria 88</h1>
+    <div class="stamp">Query do Azure DevOps (FAPonline): user stories com Data Entrega 30/10/2026 · atualizado em 21/10/2026 às 15h56</div>
+    <p class="sub" id="takeaway"><span data-source="totais" data-field="prontos" data-row="0" class="dash-skeleton">—</span> de <span data-source="totais" data-field="total" data-row="0" class="dash-skeleton">—</span> user stories estão prontas para publicação (<span data-source="totais" data-field="pct_pronto" data-row="0" class="dash-skeleton">—</span>). <span data-source="totais" data-field="pendentes" data-row="0" class="dash-skeleton">—</span> ainda estão em desenvolvimento ou teste.</p>
+  </header>
+
+  <section class="kpis" id="kpis" aria-label="Itens por etapa"></section>
+
+  <section class="card" id="funil">
+    <h2>Fluxo da sprint</h2>
+    <p class="note">Distribuição das 4 etapas do board, da esquerda (início) para a direita (pronto)</p>
+    <div class="pipe" id="pipe" data-source="por_etapa"></div>
+    <div class="legend" id="pipe-leg"></div>
+  </section>
+
+  <section class="card" id="quadro">
+    <h2>Quadro das atividades em andamento</h2>
+    <p class="note">Itens que ainda não chegaram em "Pronto para publicação"</p>
+    <div class="board" id="board" data-source="itens"></div>
+  </section>
+
+  <div class="grid">
+    <section class="card" id="clientes">
+      <h2>Itens por cliente</h2>
+      <p class="note">Total de user stories por cliente, divididas por etapa</p>
+      <div class="bars" id="bars-cli" data-source="itens"></div>
+    </section>
+    <section class="card" id="devs">
+      <h2>Carga por dev responsável</h2>
+      <p class="note">User stories por dev, divididas por etapa</p>
+      <div class="bars" id="bars-dev" data-source="itens"></div>
+    </section>
+    <section class="card" id="testers">
+      <h2>Carga por tester</h2>
+      <p class="note">User stories por tester, divididas por etapa</p>
+      <div class="bars" id="bars-qa" data-source="itens"></div>
+    </section>
+  </div>
+
+  <section class="card" id="lista">
+    <h2>Todas as user stories</h2>
+    <p class="note">Clique no ID para abrir no Azure DevOps · clique no cabeçalho para ordenar</p>
+    <div class="tools">
+      <input id="busca" type="search" placeholder="Buscar por título, cliente, pessoa…" aria-label="Buscar">
+      <select id="f-etapa" aria-label="Filtrar etapa"><option value="">Todas as etapas</option></select>
+    </div>
+    <div class="tbl">
+      <table data-source="itens" data-row-key="id" id="tabela">
+        <thead><tr>
+          <th data-field="id"><button data-k="id">ID</button></th>
+          <th data-field="titulo"><button data-k="titulo">Título</button></th>
+          <th data-field="cliente"><button data-k="cliente">Cliente</button></th>
+          <th data-field="etapa"><button data-k="ordem_etapa">Etapa</button></th>
+          <th data-field="responsavel"><button data-k="responsavel">Assigned To</button></th>
+          <th data-field="dev" class="hide-sm"><button data-k="dev">Dev</button></th>
+          <th data-field="tester" class="hide-sm"><button data-k="tester">Tester</button></th>
+          <th data-field="alterado" class="hide-sm"><button data-k="alterado">Alterado</button></th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+const ETAPAS=['Em desenvolvimento','Pronto para teste','Em teste','Pronto para publicação'];
+const cor=e=>({'Em desenvolvimento':dash.colors[2],'Pronto para teste':dash.colors[1],'Em teste':dash.colors[3],'Pronto para publicação':dash.colors[0]})[e];
+window.__gvEtapas=ETAPAS;window.__gvCor=cor;
+
+dash.calc('por_etapa',{title:'Itens por etapa',description:'Conta as user stories em cada etapa do board e a fatia de cada etapa no total.',inputs:['itens'],
+ fn:(itens)=>['Em desenvolvimento','Pronto para teste','Em teste','Pronto para publicação'].map(e=>{const n=itens.filter(r=>r.etapa===e).length;return {etapa:e,itens:n,pct:itens.length?n/itens.length:0};})});
+dash.calc('totais',{title:'Resumo da sprint',description:'Total de user stories, quantas estão prontas para publicação e quantas faltam.',inputs:['itens'],
+ fn:(itens)=>{const p=itens.filter(r=>r.etapa==='Pronto para publicação').length;return [{total:itens.length,prontos:p,pendentes:itens.length-p,pct_pronto:itens.length?p/itens.length:0}];}});
+
+const pct=d3.format('.0%');
+const esc=s=>String(s==null?'':s);
+const el=(t,c,txt)=>{const e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;};
+const fdt=s=>s?s.slice(8,10)+'/'+s.slice(5,7):'';
+
+function fail(box){box.innerHTML='';box.appendChild(el('div','fail','Failed to load'));}
+
+function barras(box,rows,key){
+  box.innerHTML='';
+  const g=d3.rollups(rows,v=>v,r=>r[key]||'(não definido)').map(([k,v])=>({k,v,n:v.length})).sort((a,b)=>b.n-a.n||a.k.localeCompare(b.k));
+  const max=d3.max(g,d=>d.n)||1;
+  const tip=el('div','tip');tip.hidden=true;box.appendChild(tip);
+  g.forEach(d=>{
+    const r=el('div','br');r.appendChild(el('div','nm',d.k));
+    const tr=el('div','tr');tr.style.width=(d.n/max*100)+'%';
+    ETAPAS.forEach(e=>{const n=d.v.filter(x=>x.etapa===e).length;if(!n)return;const s=el('span');s.style.flex=n;s.style.background=cor(e);tr.appendChild(s);});
+    const wrap=el('div');wrap.appendChild(tr);r.appendChild(wrap);r.appendChild(el('div','n',d.n));
+    r.addEventListener('mousemove',ev=>{
+      tip.innerHTML='';tip.appendChild(el('div','h',d.k+' · '+d.n+' itens'));
+      ETAPAS.forEach(e=>{const n=d.v.filter(x=>x.etapa===e).length;if(!n)return;const l=el('div');const sw=el('span','sw');sw.style.background=cor(e);l.appendChild(sw);l.appendChild(document.createTextNode(e+': '+n));tip.appendChild(l);});
+      tip.hidden=false;const b=box.getBoundingClientRect();let x=ev.clientX-b.left+12;const w=tip.offsetWidth;if(x+w>b.width)x=Math.max(0,ev.clientX-b.left-w-12);tip.style.left=x+'px';tip.style.top=(ev.clientY-b.top+12)+'px';});
+    r.addEventListener('mouseleave',()=>tip.hidden=true);
+    box.appendChild(r);
+  });
+}
+
+let sortK='ordem_etapa',sortDir=1;
+const busca=document.getElementById('busca'),fEtapa=document.getElementById('f-etapa');
+ETAPAS.forEach(e=>{const o=el('option',null,e);o.value=e;fEtapa.appendChild(o);});
+
+function tabela(rows){
+  const tb=document.querySelector('#tabela tbody');tb.innerHTML='';
+  const q=busca.value.trim().toLowerCase(),fe=fEtapa.value;
+  let rs=rows.filter(r=>(!fe||r.etapa===fe)&&(!q||[r.id,r.titulo,r.cliente,r.dev,r.tester,r.responsavel,r.etapa].join(' ').toLowerCase().includes(q)));
+  rs=rs.slice().sort((a,b)=>{const x=a[sortK],y=b[sortK];return (typeof x==='number'?x-y:esc(x).localeCompare(esc(y)))*sortDir||(a.id-b.id);});
+  document.querySelectorAll('#tabela th').forEach(th=>{const k=th.querySelector('button').dataset.k;th.setAttribute('aria-sort',k===sortK?(sortDir>0?'ascending':'descending'):'none');});
+  rs.forEach(r=>{
+    const tr=el('tr');
+    const td0=el('td');const a=el('a',null,String(r.id));a.href=r.link;a.target='_blank';a.rel='noopener';td0.appendChild(a);tr.appendChild(td0);
+    tr.appendChild(el('td',null,r.titulo));tr.appendChild(el('td',null,r.cliente));
+    const te=el('td');const p=el('span','pill',r.etapa);p.style.borderColor=cor(r.etapa);te.appendChild(p);tr.appendChild(te);
+    tr.appendChild(el('td',null,r.responsavel));
+    tr.appendChild(el('td','hide-sm',r.dev));tr.appendChild(el('td','hide-sm',r.tester));tr.appendChild(el('td','hide-sm',fdt(r.alterado)));
+    tb.appendChild(tr);
+  });
+}
+document.querySelectorAll('#tabela th button').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.k;if(sortK===k)sortDir=-sortDir;else{sortK=k;sortDir=1;}draw();}));
+busca.addEventListener('input',()=>draw());fEtapa.addEventListener('change',()=>draw());
+
+function draw(){
+  const it=dash.data('itens'),pe=dash.data('por_etapa'),tt=dash.data('totais');
+  const okI=it.status==='ok',rows=okI?it.data:[];
+  const fill=(sel,v)=>document.querySelectorAll(sel).forEach(n=>{n.classList.remove('dash-skeleton');n.textContent=v;});
+  // resumo
+  if(tt.status==='ok'&&tt.data[0]){const t=tt.data[0];
+    fill('#takeaway [data-field=prontos]',t.prontos);fill('#takeaway [data-field=total]',t.total);fill('#takeaway [data-field=pct_pronto]',pct(t.pct_pronto));fill('#takeaway [data-field=pendentes]',t.pendentes);}
+  else if(tt.status!=='loading'){fill('#takeaway span','—');}
+  // KPIs
+  const k=document.getElementById('kpis');k.innerHTML='';
+  const rowsE=pe.status==='ok'?pe.data:null;
+  const tile=(lab,val,cl,attrs)=>{const d=el('div','kpi');if(cl)d.style.setProperty('--k',cl);d.appendChild(el('div','lab',lab));const v=el('div','val',val);Object.entries(attrs).forEach(([a,b])=>v.setAttribute(a,b));if(val==='—'&&rowsE===null)v.classList.add('dash-skeleton');d.appendChild(v);k.appendChild(d);};
+  const T=tt.status==='ok'&&tt.data[0];
+  tile('Total na sprint',T?T.total:'—',null,{'data-source':'totais','data-field':'total','data-row':'0'});
+  ETAPAS.slice().reverse().forEach(e=>{const r=rowsE&&rowsE.find(x=>x.etapa===e);tile(e,r?r.itens:'—',cor(e),{'data-source':'por_etapa','data-field':'itens','data-where':'etapa='+encodeURIComponent(e)});});
+  tile('% pronto',T?pct(T.pct_pronto):'—',dash.colors[0],{'data-source':'totais','data-field':'pct_pronto','data-row':'0'});
+  // pipeline
+  const pipe=document.getElementById('pipe'),leg=document.getElementById('pipe-leg');pipe.innerHTML='';leg.innerHTML='';
+  if(pe.status==='error')fail(pipe);
+  else if(rowsE){rowsE.forEach(r=>{if(!r.itens)return;const d=el('div',null,r.itens+' · '+pct(r.pct));d.style.flex=r.itens;d.style.background=cor(r.etapa);d.title='';pipe.appendChild(d);
+    const l=el('span');const sw=el('span','sw');sw.style.background=cor(r.etapa);l.appendChild(sw);l.appendChild(document.createTextNode(r.etapa+' ('+r.itens+')'));leg.appendChild(l);});}
+  else pipe.classList.add('dash-skeleton');
+  if(rowsE)pipe.classList.remove('dash-skeleton');
+  // board
+  const bd=document.getElementById('board');bd.innerHTML='';
+  if(it.status==='error'){fail(bd);}
+  else if(okI){ETAPAS.slice(0,3).forEach(e=>{
+    const c=el('div','col');c.style.setProperty('--c',cor(e));
+    const its=rows.filter(r=>r.etapa===e).sort((a,b)=>a.id-b.id);
+    const h=el('div','colh');h.appendChild(el('span',null,e));h.appendChild(el('span','pill',String(its.length)));c.appendChild(h);
+    if(!its.length)c.appendChild(el('div','m','Nenhum item'));
+    its.forEach(r=>{const t=el('div','tk');t.style.setProperty('--c',cor(e));
+      const top=el('div','m');const a=el('a',null,'#'+r.id);a.href=r.link;a.target='_blank';a.rel='noopener';top.appendChild(a);top.appendChild(document.createTextNode(' · '+r.cliente));t.appendChild(top);
+      t.appendChild(el('div','t',r.titulo));
+      const at=el('div','m at');at.appendChild(el('span','atl','Assigned To: '));at.appendChild(el('strong',null,r.responsavel||'—'));t.appendChild(at);
+      t.appendChild(el('div','m','Dev: '+(r.dev||'—')+' · Tester: '+(r.tester||'—')));
+      if(!r.dev||!r.tester){const w=el('span','pill warn',!r.dev?'Sem dev':'Sem tester');t.appendChild(w);}
+      c.appendChild(t);});
+    bd.appendChild(c);});}
+  // barras
+  [['bars-cli','cliente'],['bars-dev','dev'],['bars-qa','tester']].forEach(([id,key])=>{const b=document.getElementById(id);
+    if(it.status==='error')fail(b);else if(okI){b.classList.remove('dash-skeleton');barras(b,rows,key);}else{b.innerHTML='';b.classList.add('dash-skeleton');}});
+  if(okI)tabela(rows);
+}
+dash.onData(draw);
+})();
+</script>
+
+</div></body></html>
